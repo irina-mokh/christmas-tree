@@ -1,0 +1,162 @@
+<section class="section container">
+  <h2 class="main__title"></h2>
+  <form class="search" action="">
+    <input class="search__input" type="search" autocomplete="off" placeholder="Search" aria-label="Search" autofocus />
+  </form>
+  <form class="main__filter filter">
+    <div class="filter__container">
+      <fieldset class="sort fieldset">
+        <legend class="filter__title">Sort:</legend>
+        <select class="filter-list sort__list">
+          <option class="sort__item" value="" selected>Sort by ...</option>
+          <option class="sort__item" value="sort-by-name-direct">A - Z</option>
+          <option class="sort__item" value="sort-by-name-reverse">Z - A</option>
+          <option class="sort__item" value="sort-by-year-direct">Ascending year</option>
+          <option class="sort__item" value="sort-by-year-reverse">Descending year</option>
+        </select>
+      </fieldset>
+      <fieldset class="filter__favorite fieldset">
+        <legend class="filter__title">Only favorite:</legend>
+        <input class="checkbox" id="favorite-on" type="checkbox" name="favorite" />
+        <label class="filter__text" for="favorite-on"> Favorite</label>
+      </fieldset>
+    </div>
+    <div class="filter__container">
+      <fieldset class="filter__amount fieldset">
+        <legend class="filter__title">Amount:</legend>
+        <input class="range range_start" type="range" id="amount-start" value="1" min="0" max="20" step="1" />
+        <input class="range range_end" type="range" id="amount-end" value="19" min="0" max="20" step="1" />
+        <div class="slider slider_amount">
+          <div class="slider__track"></div>
+          <div class="slider__track slider__track_active"></div>
+          <div class="slider__thumb thumb_left"></div>
+          <div class="slider__thumb thumb_right"></div>
+        </div>
+        <div class="filter__value">
+          <span class="min"></span>
+          <span class="max"></span>
+        </div>
+      </fieldset>
+      <fieldset class="filter__year fieldset">
+        <legend class="filter__title">Year:</legend>
+        <input class="range range_start" type="range" id="year-start" value="1910" min="1900" max="2020" step="1" />
+        <input class="range range_end" type="range" id="year-end" value="2020" min="1900" max="2020" step="1" />
+        <div class="slider slider_amount">
+          <div class="slider__track"></div>
+          <div class="slider__track slider__track_active"></div>
+          <div class="slider__thumb thumb_left"></div>
+          <div class="slider__thumb thumb_right"></div>
+        </div>
+        <div class="filter__value">
+          <span class="min"></span>
+          <span class="max"></span>
+        </div>
+      </fieldset>
+    </div>
+    <div class="filter__container">
+      <fieldset class="filter__shape fieldset">
+        <legend class="filter__title">Shape:</legend>
+        <ul class="filter-list shape">
+          <li class="li">
+            <input class="checkbox" id="shape-ball" name="ball" type="checkbox" checked />
+            <label class="shape__icon shape__icon_ball" for="shape-ball"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="shape-snowflake" name="snowflake" type="checkbox" checked />
+            <label class="shape__icon shape__icon_snowflake" for="shape-snowflake"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="shape-bell" name="bell" type="checkbox" checked />
+            <label class="shape__icon shape__icon_bell" for="shape-bell"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="shape-cone" name="cone" type="checkbox" checked />
+            <label class="shape__icon shape__icon_cone" for="shape-cone"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="shape-figurine" name="figurine" type="checkbox" checked />
+            <label class="shape__icon shape__icon_figurine" for="shape-figurine"></label>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="filter__color fieldset">
+        <legend class="filter__title">Color:</legend>
+        <ul class="filter-list color">
+          <li class="li">
+            <input class="checkbox" id="color-white" name="white" type="checkbox" checked />
+            <label class="color__icon color__icon_white" for="color-white"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="color-red" name="red" type="checkbox" checked />
+            <label class="color__icon color__icon_red" for="color-red"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="color-blue" name="blue" type="checkbox" checked />
+            <label class="color__icon color__icon_blue" for="color-blue"></label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="color-green" name="green" type="checkbox" checked />
+            <label class="color__icon color__icon_green" for="color-green"> </label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="color-yellow" name="yellow" type="checkbox" checked />
+            <label class="color__icon color__icon_yellow" for="color-yellow"></label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+    <div class="filter__container">
+      <fieldset class="filter__size fieldset">
+        <legend class="filter__title">Size:</legend>
+        <ul class="filter-list size">
+          <li class="li">
+            <input class="checkbox" id="size-small" name="small" type="checkbox" checked />
+            <label class="filter__text" for="size-small">Small </label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="size-medium" name="medium" type="checkbox" checked />
+            <label class="filter__text" for="size-medium">Medium </label>
+          </li>
+          <li class="li">
+            <input class="checkbox" id="size-big" name="big" type="checkbox" checked />
+            <label class="filter__text" for="size-big">Big </label>
+          </li>
+        </ul>
+      </fieldset>
+      <input class="btn filter__reset" type="reset" value="Reset" />
+    </div>
+  </form>
+  <ul class="main__decor-list">
+    <li class="decor decor-template">
+      <div class="decor__labels">
+        <div class="decor__fvrt">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.3314 12.0474L12 20L19.6686 12.0474C20.5211 11.1633 21 9.96429 21 8.71405C21 6.11055 18.9648 4 16.4543 4C15.2487 4 14.0925 4.49666 13.24 5.38071L12 6.66667L10.76 5.38071C9.90749 4.49666 8.75128 4 7.54569 4C5.03517 4 3 6.11055 3 8.71405C3 9.96429 3.47892 11.1633 4.3314 12.0474Z"
+              stroke="black"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="decor__amount"></div>
+        <div class="decor__color"></div>
+        <div class="decor__shape"></div>
+      </div>
+      <img class="decor__img" src="../../assets/toys/1.png" alt="decoration image" width="100" height="100" />
+      <h4 class="decor__title">X-mas ball</h4>
+      <table class="decor__info">
+        <tr>
+          <td>Year:</td>
+          <td class="decor__year">1953</td>
+        </tr>
+        <tr>
+          <td>Size:</td>
+          <td class="decor__size">small</td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+</section>
+<div class="error-popup"></div>

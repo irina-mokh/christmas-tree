@@ -1,0 +1,194 @@
+@use './vars.scss';
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../assets/fonts/ptsans.woff2'), url('../assets/fonts/ptsans.woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../assets/fonts/ptsansbold.woff2'), url('../assets/fonts/ptsansbold.woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.page {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-family: 'PT Sans', sans-serif, Tahoma;
+  color: vars.$snow;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 15px;
+  height: 100%;
+}
+
+.section {
+  height: 100%;
+}
+
+.btn {
+  display: block;
+  text-decoration: none;
+  background: transparent center no-repeat;
+  padding: 7px 15px;
+  border: 2px solid black;
+  border-radius: 2em;
+  color: black;
+  cursor: pointer;
+  filter: vars.$filter-snow;
+
+  &:hover {
+    filter: vars.$filter-green;
+  }
+  &:active {
+    filter: vars.$filter-blue-green;
+  }
+
+  &_close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background-image: url('../assets/icons/close_big.svg');
+
+    &:hover {
+      filter: vars.$filter-blue-green;
+    }
+    &:active {
+      opacity: 0.8;
+    }
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  max-width: 300px;
+  width: 80%;
+  position: relative;
+  top: 10%;
+  text-align: center;
+  padding: 0.8em;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: vars.$jet;
+  @media (max-width: vars.$smallScreen) {
+    font-size: 16px;
+    top: 10px;
+  }
+}
+
+/* MAIN*/
+.main {
+  background-image: url('../assets/bg/main-bg.jpg');
+  z-index: 2;
+  position: relative;
+  background-size: 100%;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.main::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(19, 21, 21, 0.3);
+  z-index: -1;
+}
+
+.hide {
+  display: none;
+}
+
+/* FOOTER */
+.footer {
+  background-color: vars.$jet;
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .rss {
+    display: block;
+    margin: 10px;
+    filter: vars.$filter-snow;
+    transition: all 0.3s;
+    &:hover {
+      filter: vars.$filter-green;
+    }
+    &:active {
+      filter: vars.$filter-blue-green;
+    }
+  }
+
+  .github {
+    display: flex;
+    margin: 5px;
+    color: vars.$snow;
+    font-size: 16px;
+    font-family: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+
+    &:hover {
+      color: black;
+      filter: vars.$filter-green;
+      &::before {
+        filter: none;
+      }
+    }
+
+    &:active {
+      color: black;
+      filter: vars.$filter-blue-green;
+    }
+
+    &::before {
+      display: inline-block;
+      content: '';
+      width: 20px;
+      height: 20px;
+      margin: 0 10px 0 0;
+      background: transparent url('../assets/icons/gh.svg') center no-repeat;
+      background-size: contain;
+      filter: vars.$filter-snow;
+    }
+  }
+}

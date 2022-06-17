@@ -1,0 +1,152 @@
+<section class="decorate section container">
+  <form class="decorate__settings config">
+    <fieldset class="config__background fieldset filter">
+      <legend class="filter__title">Background</legend>
+      <ul class="filter-list">
+        <li class="li">
+          <input class="radio" id="bg-1" name="scene" type="radio" checked />
+          <label class="thumb thumb_bg" for="bg-1">
+            <img class="thumb__img" src="../../assets/bg/1.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-2" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-2">
+            <img class="thumb__img" src="../../assets/bg/2.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-3" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-3">
+            <img class="thumb__img" src="../../assets/bg/3.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-4" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-4">
+            <img class="thumb__img" src="../../assets/bg/4.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-5" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-5">
+            <img class="thumb__img" src="../../assets/bg/5.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-6" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-6">
+            <img class="thumb__img" src="../../assets/bg/6.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-7" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-7">
+            <img class="thumb__img" src="../../assets/bg/7.jpg" alt="background" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="bg-8" name="scene" type="radio" />
+          <label class="thumb thumb_bg" for="bg-8">
+            <img class="thumb__img" src="../../assets/bg/8.jpg" alt="background" />
+          </label>
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset class="config__tree fieldset filter">
+      <legend class="filter__title">Tree</legend>
+      <ul class="filter-list">
+        <li class="li">
+          <input class="radio" id="tree-1" name="tree" type="radio" checked />
+          <label class="thumb thumb_tree" for="tree-1">
+            <img class="thumb__img" src="../../assets/tree/1.png" alt="christmas tree" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="tree-2" name="tree" type="radio" />
+          <label class="thumb thumb_tree" for="tree-2">
+            <img class="thumb__img" src="../../assets/tree/2.png" alt="christmas tree" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="tree-3" name="tree" type="radio" />
+          <label class="thumb thumb_tree" for="tree-3">
+            <img class="thumb__img" src="../../assets/tree/3.png" alt="christmas tree" />
+          </label>
+        </li>
+        <li class="li">
+          <input class="radio" id="tree-4" name="tree" type="radio" />
+          <label class="thumb thumb_tree" for="tree-4">
+            <img class="thumb__img" src="../../assets/tree/4.png" alt="christmas tree" />
+          </label>
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset class="config__garland fieldset filter">
+      <legend class="filter__title">Garland</legend>
+      <div class="garland-type">
+        <input class="checkbox" type="checkbox" id="lights" checked />
+        <label class="filter__text" for="lights">On</label>
+      </div>
+      <ul class="filter-list">
+        <li class="li">
+          <input class="radio" id="white" name="color" type="radio" checked />
+          <label class="thumb color" for="white"></label>
+        </li>
+        <li class="li">
+          <input class="radio" id="blue" name="color" type="radio" />
+          <label class="thumb color" for="blue"></label>
+        </li>
+        <li class="li">
+          <input class="radio" id="red" name="color" type="radio" />
+          <label class="thumb color" for="red"></label>
+        </li>
+        <li class="li">
+          <input class="radio" id="yellow" name="color" type="radio" />
+          <label class="thumb color" for="yellow"></label>
+        </li>
+        <li class="li">
+          <input class="radio" id="multicolor" name="color" type="radio" />
+          <label class="thumb color" for="multicolor"></label>
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset class="config__effects fieldset filter">
+      <legend class="filter__title">Effects</legend>
+      <ul class="filter-list">
+        <li class="li">
+          <input class="checkbox" type="checkbox" id="snow" />
+          <label class="filter__text" for="snow">Snow</label>
+        </li>
+        <li class="li">
+          <input class="checkbox" type="checkbox" id="music" />
+          <label class="filter__text" for="music">Music</label>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+  <div class="decorate__main scene">
+    <img src="../../assets/bg/1.jpg" alt="background" class="scene__bg" />
+
+    <div class="scene__tree tree">
+      <map class="tree__map" name="christmas-tree">
+        <area class="droppable" shape="poly" coords="50, 570, 180, 0, 360, 570" href="#" target="_blank" alt="" />
+      </map>
+      <img class="tree__img" usemap="#christmas-tree" src="../../assets/tree/1.png" alt="x-mas tree" />
+      <div class="tree__lights hide">
+        <div class="light"></div>
+      </div>
+    </div>
+    <div class="scene__snow hide">
+      <div class="snowflake"></div>
+    </div>
+  </div>
+  <div class="decorate__items catalog">
+    <ul class="catalog__list">
+      <li class="item decor-template">
+        <img class="item__img" src="../../assets/toys/1.png" alt="decoration image" draggable="true" />
+        <span class="item__amount"></span>
+      </li>
+    </ul>
+  </div>
+</section>

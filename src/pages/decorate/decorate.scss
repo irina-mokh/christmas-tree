@@ -1,0 +1,437 @@
+@use '../../scss/vars.scss';
+
+.decorate {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 2fr 5fr 1fr;
+  gap: 1em;
+  @media (max-width: vars.$mediumScreen) {
+    grid-template-columns: 1fr;
+  }
+
+  &__settings {
+    .fieldset {
+      margin: 0 0 10px 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      justify-content: center;
+    }
+  }
+}
+
+.config {
+  @media (max-width: vars.$mediumScreen) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+  }
+  .radio {
+    display: none;
+  }
+
+  .filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .thumb {
+    display: block;
+    cursor: pointer;
+    filter: grayscale(1);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid vars.$snow;
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .radio:checked + .thumb {
+    filter: grayscale(0);
+    border-color: vars.$green;
+  }
+
+  &__background {
+    .filter-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: center;
+      gap: 5px;
+    }
+
+    .thumb_bg {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      @media (max-width: vars.$smallScreen) {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  &__tree {
+    .filter-list {
+    }
+
+    .radio:checked + .thumb_tree {
+      border-bottom: 2px solid vars.$green;
+      border-radius: 0%;
+    }
+
+    .thumb_tree {
+      width: 40px;
+      height: 70px;
+      filter: none;
+      border: none;
+    }
+  }
+
+  &__garland {
+    .garland-type {
+      margin: 7px 0 10px 0;
+    }
+    .filter-list {
+      grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    }
+
+    .color {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      filter: none;
+    }
+
+    .radio:checked + .color {
+      border-color: vars.$green;
+      //background-image: url("../../assets/icons/plus.svg");
+    }
+
+    .radio:checked + .color::before {
+      content: '';
+      display: block;
+      width: 120%;
+      height: 120%;
+      border-color: vars.$green;
+      background-image: url('../../assets/icons/plus.svg');
+    }
+
+    .li:nth-child(1) .color {
+      background-color: vars.$snow;
+    }
+
+    .li:nth-child(2) .color {
+      background-color: blue;
+    }
+
+    .li:nth-child(3) .color {
+      background-color: red;
+    }
+
+    .li:nth-child(4) .color {
+      background-color: yellow;
+    }
+
+    .li:nth-child(5) .color {
+      background: linear-gradient(vars.$basic-blue, vars.$basic-yellow, vars.$basic-red);
+    }
+  }
+
+  &__effects {
+    .filter-list {
+      justify-content: space-around;
+      @media (max-width: vars.$mediumScreen) {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.scene {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  &__bg {
+    position: absolute;
+    object-fit: cover;
+    object-position: bottom;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__tree {
+    z-index: 2;
+  }
+  .tree {
+    position: relative;
+    &__map {
+    }
+    &__img {
+      display: block;
+      z-index: 2;
+      margin-bottom: -40px;
+      max-height: 600px;
+    }
+  }
+}
+
+.catalog {
+  display: grid;
+
+  &__list {
+    margin: 1em 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    justify-content: space-between;
+    gap: 5px;
+    align-self: start;
+
+    .item {
+      width: 50px;
+      height: 50px;
+      list-style: none;
+      position: relative;
+      cursor: move;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 7px;
+      &__img {
+        width: 80%;
+        object-fit: contain;
+      }
+
+      &__amount {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        color: vars.$snow;
+        margin: 0;
+        font-size: 14px;
+        border-radius: 50%;
+        border: 2px solid vars.$snow;
+        background-color: vars.$green;
+      }
+    }
+  }
+}
+
+.scene__snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  @function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+  }
+
+  .snowflake {
+    $SNOWDROPS_LENGTH: 100;
+    // NOTE: Opacity zero is required due to appearance of snow.
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    border-radius: 100%;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    animation-name: snow-drop;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    // Bases of random snows effect
+    $snow-size-base: 20;
+    $browser-buffer: 50;
+    $left-position: 100 + $browser-buffer;
+    $animate-speed-base: 8000;
+    $minimum-falling-speed: 5000;
+    $animate-delay-base: 5000;
+    $blur-base: 5;
+
+    @for $i from 1 through $SNOWDROPS_LENGTH {
+      $size: abs(random($snow-size-base) - random($snow-size-base)) + 0px;
+
+      &:nth-child(#{$i}) {
+        left: abs(random($left-position) - random($left-position)) + 0%;
+        width: $size;
+        height: $size;
+        animation-duration: abs(random($animate-speed-base) - random($animate-speed-base)) +
+          $minimum-falling-speed +
+          0ms;
+        animation-delay: abs(random($animate-delay-base)) + 0ms;
+        filter: blur(abs(random($blur-base) - random($blur-base)) + 0px);
+      }
+    }
+  }
+
+  @keyframes snow-drop {
+    $window-height-threshold: 1.5;
+
+    0% {
+      transform: translate(0, 0);
+      opacity: 0.5;
+      margin-left: 0;
+    }
+
+    10% {
+      margin-left: 15px;
+    }
+
+    20% {
+      margin-left: 20px;
+    }
+
+    25% {
+      transform: translate(0, 250px / $window-height-threshold);
+      opacity: 0.75;
+    }
+
+    30% {
+      margin-left: 15px;
+    }
+
+    40% {
+      margin-left: 0;
+    }
+
+    50% {
+      transform: translate(0, 500px / $window-height-threshold);
+      opacity: 1;
+      margin-left: -15px;
+    }
+
+    60% {
+      margin-left: -20px;
+    }
+
+    70% {
+      margin-left: -15px;
+    }
+
+    75% {
+      transform: translate(0, 750px / $window-height-threshold);
+      opacity: 0.5;
+    }
+
+    80% {
+      margin-left: 0;
+    }
+
+    100% {
+      transform: translate(0, 1000px / $window-height-threshold);
+      opacity: 0;
+    }
+  }
+}
+
+//lights
+
+$globe-width: 3px;
+$globe-height: 3px;
+$globe-spacing: 30px;
+$globe-spread: 2px;
+$light-off-opacity: 0.4;
+
+@mixin colorize($color) {
+  background: $color;
+  box-shadow: 0px $globe-height/6 $globe-width * 2 $globe-spread $color;
+}
+
+.tree__lights {
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  padding: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+
+  clip-path: polygon(50% 5%, 10% 85%, 90% 85%);
+
+  .light {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: $globe-width;
+    height: $globe-height;
+    border-radius: 50%;
+    margin: $globe-spacing/2;
+    display: inline-block;
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+
+    &:nth-child(odd) {
+      animation-duration: 0.8s;
+    }
+    &:nth-child(2n + 1) {
+      animation-duration: 1.5s;
+    }
+    &:nth-child(3n + 1) {
+      animation-duration: 1.7s;
+    }
+    &:nth-child(6n + 1) {
+      animation-duration: 0.4s;
+    }
+
+    &_white {
+      @include colorize(vars.$basic-white);
+    }
+
+    &_blue {
+      @include colorize(vars.$basic-blue);
+    }
+
+    &_red {
+      @include colorize(vars.$basic-red);
+    }
+
+    &_yellow {
+      @include colorize(vars.$basic-yellow);
+    }
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+  }
+  50% {
+    filter: opacity($light-off-opacity) blur(3px);
+  }
+}
+
+.draggable {
+  position: absolute;
+  z-index: 5;
+}

@@ -1,0 +1,35 @@
+/* HEADER */
+@use '../../../scss/vars.scss';
+
+.header {
+  background-color: vars.$jet;
+  font-size: 20px;
+
+  @media (max-width: vars.$smallScreen) {
+    font-size: 16px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: block;
+    width: 7em;
+    height: 3em;
+    cursor: pointer;
+    padding: 0 0 0 3em;
+    color: vars.$snow;
+    text-decoration: none;
+    text-align: center;
+    background: url('../../../assets/icons/logo.svg') no-repeat;
+    background-size: contain;
+
+    &:hover {
+      color: vars.$green;
+      transition: color 0.2s;
+    }
+  }
+}

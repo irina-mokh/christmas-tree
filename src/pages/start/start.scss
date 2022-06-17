@@ -1,0 +1,30 @@
+@use '../../scss/vars.scss';
+
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 3em;
+  font-size: 1.5em;
+  background-image: url('../../assets/icons/sock.svg'), url('../../assets/icons/star.svg'),
+    url('../../assets/icons/candy.svg');
+  background-repeat: no-repeat;
+  background-position: 20% 0, 50% 0, 80% 0;
+  background-size: 0.7;
+  &__text {
+    max-width: 60%;
+    line-height: 2em;
+    text-align: center;
+    @media (max-width: vars.$mediumScreen) {
+      max-width: 80%;
+    }
+  }
+
+  &__btn {
+    max-width: 30%;
+    @media (max-width: vars.$mediumScreen) {
+      max-width: 80%;
+    }
+  }
+}

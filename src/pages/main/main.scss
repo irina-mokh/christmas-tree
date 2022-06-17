@@ -1,0 +1,421 @@
+@use '../../scss/vars.scss';
+
+/* MAIN */
+
+.search {
+  position: relative;
+  height: 2em;
+  margin: 0 0 10px auto;
+  max-width: 300px;
+  &__input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1em;
+    padding-left: 15px;
+    background-color: vars.$jet;
+    color: vars.$snow;
+  }
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5em;
+  align-items: stretch;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .fieldset {
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(19, 21, 21, 0.7);
+  }
+
+  &__title {
+    color: vars.$green;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    margin: 0 0 5px 0;
+  }
+
+  .checkbox {
+    display: none;
+
+    & + .filter__text::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin: 0 10px 0 0;
+      border-radius: 50%;
+      border: 2px solid #000000;
+      background-size: 80%;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: vars.$filter-green;
+      transition: all 0.3s ease;
+    }
+
+    &:checked + .filter__text::before {
+      background-image: url('../../assets/icons/check.svg');
+    }
+  }
+
+  &__amount,
+  &__year,
+  &__shape,
+  &__color {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  .range {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 2;
+    height: 10px;
+    width: 100%;
+    opacity: 0;
+
+    &::-webkit-slider-thumb {
+      pointer-events: all;
+      width: 30px;
+      height: 30px;
+      border-radius: 0;
+      border: none;
+      -webkit-appearance: none;
+    }
+  }
+
+  .slider {
+    position: relative;
+    z-index: 1;
+    height: 8px;
+
+    &__track {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 5px;
+      background-color: vars.$jet;
+    }
+
+    &__track_active {
+      position: absolute;
+      z-index: 2;
+      left: 10%;
+      right: 10%;
+      top: 0;
+      bottom: 0;
+      border-radius: 5px;
+      background-color: vars.$blue-green;
+    }
+
+    &__thumb {
+      position: absolute;
+      z-index: 3;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      background-color: vars.$green;
+      border-radius: 50%;
+      border: 2px solid vars.$green;
+      transition: box-shadow 0.3s ease-in-out;
+
+      &.thumb_hover {
+        box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3);
+      }
+
+      &.thumb_active {
+        border-color: vars.$snow;
+      }
+
+      &.thumb_left {
+        left: 10%;
+        transform: translate(0px, -3px);
+      }
+
+      &.thumb_right {
+        right: 10%;
+        transform: translate(0px, -3px);
+      }
+    }
+  }
+
+  &__value {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 10px 0 10px;
+    font-size: 14px;
+  }
+
+  &__shape,
+  &__color {
+    flex-grow: 1;
+  }
+
+  .shape {
+    display: flex;
+    justify-content: space-between;
+
+    .checkbox:checked + .shape__icon {
+      filter: vars.$filter-green;
+      opacity: 1;
+    }
+
+    &__icon {
+      display: block;
+      content: '';
+      width: 35px;
+      height: 35px;
+      filter: vars.$filter-snow;
+      opacity: 0.5;
+      background: no-repeat center;
+      background-size: contain;
+
+      &_ball {
+        background-image: url('../../assets/icons/shape/ball.svg');
+      }
+      &_snowflake {
+        background-image: url('../../assets/icons/shape/snowflake.svg');
+      }
+      &_bell {
+        background-image: url('../../assets/icons/shape/bell.svg');
+      }
+      &_cone {
+        background-image: url('../../assets/icons/shape/cone.svg');
+      }
+      &_figurine {
+        background-image: url('../../assets/icons/shape/figurine.svg');
+      }
+    }
+  }
+
+  .color {
+    display: flex;
+    justify-content: space-between;
+
+    &__icon {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      border-radius: 50%;
+      border: 4px solid #727272;
+      background-size: contain;
+      opacity: 0.8;
+
+      &_white {
+        background-color: vars.$snow;
+      }
+
+      &_red {
+        background-color: vars.$basic-red;
+      }
+
+      &_blue {
+        background-color: vars.$basic-blue;
+      }
+
+      &_green {
+        background-color: vars.$basic-green;
+      }
+
+      &_yellow {
+        background-color: vars.$basic-yellow;
+      }
+    }
+
+    .checkbox:checked + .color__icon {
+      border-color: vars.$green;
+    }
+  }
+
+  .filter-list {
+    margin: 0;
+    padding: 0;
+
+    .li {
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  .sort {
+    flex-grow: 1;
+    &__list {
+      background-color: vars.$jet;
+      border: none;
+      font-size: 16px;
+      height: 1.8em;
+      width: 100%;
+      color: vars.$snow;
+    }
+  }
+
+  &__reset {
+    padding: 7px;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 80%;
+    align-self: center;
+  }
+}
+
+.main__decor-list {
+  margin: 1em 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  justify-content: space-between;
+  gap: 1em;
+
+  .decor {
+    max-width: 250px;
+    list-style: none;
+    margin: 0;
+    padding: 7px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(19, 21, 21, 0.7);
+    cursor: pointer;
+
+    &_selected {
+      background-color: rgba(37, 56, 52, 0.5);
+      border: 1px solid vars.$green;
+    }
+
+    &:hover {
+      border: 1px solid vars.$green;
+    }
+
+    &.decor-template {
+      display: none;
+    }
+
+    &__labels {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      height: 100px;
+      cursor: auto;
+
+      .decor__fvrt {
+        display: block;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        border: none;
+        transition: all 0.3s ease;
+        filter: none;
+        cursor: auto;
+
+        & path {
+          stroke: vars.$snow;
+        }
+
+        &_active path {
+          fill: vars.$green;
+          stroke: vars.$green;
+        }
+      }
+    }
+
+    &__amount,
+    &__color,
+    &__shape {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+
+    &__amount {
+      border: 1px solid vars.$snow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    &__color_yellow {
+      background-color: vars.$basic-yellow;
+    }
+    &__color_white {
+      background-color: vars.$basic-white;
+    }
+    &__color_blue {
+      background-color: vars.$basic-blue;
+    }
+    &__color_green {
+      background-color: vars.$basic-green;
+    }
+    &__color_red {
+      background-color: vars.$basic-red;
+    }
+
+    &__shape {
+      background-image: url('../../assets/icons/shape/ball.svg');
+      background-position: center;
+      background-size: 100%;
+      filter: vars.$filter-snow;
+    }
+
+    &__info {
+      width: 100%;
+      margin: 3px 0 0 0;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 1.3em;
+      color: vars.$green;
+      margin: 3px 0 0 0;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    &__year,
+    &__size {
+      font-size: 0.9em;
+    }
+  }
+}
+
+.error-popup {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  max-width: 150px;
+  border-radius: 10px;
+  background-color: vars.$jet;
+  font-size: 14px;
+  border: 2px solid vars.$green;
+  opacity: 0;
+  transition: all 0.3s ease;
+  &_active {
+    display: block;
+    opacity: 1;
+  }
+}
